@@ -1,0 +1,18 @@
+<!DO html>
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="/js/myCtrl.js"></script>
+
+</head>
+<body>
+<div ng-controller="myCtrl">
+    {{ firstName + " " + lastName }}
+    <ul>
+        <li ng-repeat="user in users">
+            <h2>{{user.username}}</h2>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
