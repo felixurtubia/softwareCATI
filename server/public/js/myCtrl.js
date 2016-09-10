@@ -1,10 +1,8 @@
-/**
- * Created by famancil on 23-08-16.
- */
+
 var app = angular.module("myApp",[]);
 
 app.controller("myCtrl", function($scope,$http) {
-    $scope.title="Listar Usuario";
+    $scope.title="Usuarios registrados";
     $scope.title2="Registrar Usuario";
     $scope.formData = {};
     /*$scope.firstName = "John";
@@ -29,7 +27,7 @@ app.controller("myCtrl", function($scope,$http) {
             });
     };
     $scope.deleteUsuario = function(id) {
-        $http.delete('/api/todos/' + id)
+        $http.delete('/api/usuarios/' + id)
             .success(function(data) {
                 $scope.todos = data;
                 console.log(data);
@@ -38,8 +36,14 @@ app.controller("myCtrl", function($scope,$http) {
                 console.log('Error:' + data);
             });
     };
+    $scope.updateUsuario = function (id) {
+        $http.put('/api/usuarios/' + id)
+            .success(function(data){
+                $scope.todos(data);
+                console.log(data);
+            })
+            .error(function (data) {
+                console.log('Error: ' + data);
+            });
+    };
 });
-/*app.controller("mysCtrl", function($scope,$http) {
-    //$scope.title = "Listar Usuario";
-    $scope.title2 = "Registrar Usuario";
-});*/

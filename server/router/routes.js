@@ -1,16 +1,10 @@
-/**
- * Created by famancil on 21-08-16.
- */
+
 
 module.exports = function(app, passport) {
 
     app.get('/', function (req, res) {
         res.render('index.html', {title: 'Departamento de Industrias?'});
     });
-
-    /*app.get('/prueba', function (req, res) {
-        res.render('prueba.html');
-    });*/
 
     app.get('/login', function(req, res) {
         // render the page and pass in any flash data if it exists
@@ -59,16 +53,27 @@ module.exports = function(app, passport) {
         })
     });
 
-    app.get('/usuarios', isAdmin,function (req,res) {
-        res.render('usuarios.html');
+    app.get('/usuarios', isLoggedIn, isAdmin,function (req,res) {
+        res.render('usuarios.html',{
+            user : req.user
+        });
     });
-    app.get('/verUsuario', function (req, res) {
+    app.get('/verUsuario',isLoggedIn, isAdmin, function (req, res) {
         if(req.user.privileges) res.render('VerUsuario.html');
     });
 
-    app.get('/crearUsuario', function (req, res) {
-        if (req.user.privileges) res.render('CrearUsuario.html', {title: 'Registrar Usuarios'});
+    app.get('/crearUsuario', isLoggedIn, isAdmin, function (req, res) {
+        res.render('crearUsuario.html', {
+            title: 'Registrar Usuarios',
+            user : req.user
+        });
     });
+    app.get('/modificarUsuario', isLoggedIn, isAdmin, function (req,res) {
+        res.render('modificarUsuario.html', {
+            title: 'Modificar Usuario',
+            user: req.user
+        })
+    })
 }
 
 function isLoggedIn(req, res, next) {

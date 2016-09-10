@@ -36,8 +36,6 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(express.static('public'));
 
 
-var nodeadmin = require('nodeadmin');
-app.use(nodeadmin(app));
 
 
 

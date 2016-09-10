@@ -1,6 +1,4 @@
-/**
- * Created by famancil on 21-08-16.
- */
+
 "use strict";
 
 var fs        = require("fs");

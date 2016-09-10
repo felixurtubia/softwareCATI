@@ -22,13 +22,35 @@ var models  = require('../models');
 //Return router
 module.exports = router;
 
+//POST crear proyecto
+router.post('/proyectos',function (req,res,next) {
+    try{
+        console.log(req.body.nombre);
+        models.Proyecto.create({
+            nombre: req.body.nombre,
+            creador: req.user.email,
+        });
+        res.render('proyectos.html', {
+            user :req.user
+
+        })
+    }
+    catch(ex){
+        console.error('No se pudo crear proyecto:' +ex);
+        return next(ex)
+    }
+})
 
 //GET usuarios
 router.get('/usuarios', function(req, res, next) {
 	try {
 		/*var query = url.parse(req.url,true).query;
 		 console.log(query);*/
-		models.Usuario.findAll().then(function (user) {
+		models.Usuario.findAll({
+		    where: {
+		        privileges: false
+            }
+        }).then(function (user) {
 			//for(var x=0;x<user.length;x++){
 			//console.log(user[x].username);
 			//res.render('VerUsuario.html', {title: 'Listar Usuarios', resultado: user});
@@ -41,6 +63,7 @@ router.get('/usuarios', function(req, res, next) {
 		return next(ex);
 	}
 });
+
 //GET un usuario con id determinado
 router.get('/usuarios/:id', function(req, res, next) {
 	try {
@@ -63,24 +86,6 @@ router.get('/usuarios/:id', function(req, res, next) {
 		return next(ex);
 	}
 });
-//POST crear proyecto
-router.post('/proyectos',function (req,res,next) {
-	try{
-		console.log(req.body.nombre);
-		models.Proyecto.create({
-			nombre: req.body.nombre,
-			creador: req.user.email,
-		});
-		res.render('proyectos.html', {
-			user :req.user
-			
-		})
-	}
-	catch(ex){
-		console.error('No se pudo crear proyecto:' +ex);
-		return next(ex)
-	}
-})
 
 //POST crear usuario
 router.post('/usuarios', function(req,res,next){
@@ -90,8 +95,9 @@ try{
 	models.Usuario.create({
 		username: req.body.username,
 		password: req.body.password,
-		email: req.body.email
-	}).then(function (user) {
+		email: req.body.email,
+		privileges: false
+	});/*.then(function (user) {
 		models.Rol.create({
 			permiso: req.body.permiso,
 			UsuarioId: user.id
@@ -100,7 +106,7 @@ try{
 			resultado.push(rol);
 			res.json(resultado);
 		});
-	});
+	});*/
 	}
 	catch(ex){
 	console.error("Internal error:"+ex);

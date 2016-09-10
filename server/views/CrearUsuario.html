@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Mi Primera App Web</title>
+    <title><%= title %></title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css">
@@ -17,162 +17,45 @@
 
   </head>
   <body ng-controller="myCtrl">
-  	<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Home</a>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>-->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/verUsuario">Ver Usuario</a></li>
-            <li><a href="/crearUsuario">Crear Usuario</a></li>
-            <!--<li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>-->
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-right">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <!--<li><a href="#">Link</a></li>-->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido Usuario! <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Ver Perfil</a></li>
-            <li><a href="#">Cerrar Sesión</a></li>
-            <!--<li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>-->
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+  <!--NAVBAR-->
+  <nav class="navbar navbar-default">
+      <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/dashboard">Administrador <%=user.username%></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                  <li class="active"><a href="/proyectos">Proyectos <span class="sr-only">(current)</span></a></li>
+                  <li><a href="/usuarios">Usuarios</a></li>
+                  <li><a href="/logout" class="btn btn-default btn-sm">Logout</a></li>
+              </ul>
+
+          </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+  </nav>
 
     <h1>{{title2}}</h1>
-<h3>Hora de ponerse serios!!!</h3>
 
-<!--<form class="form-horizontal" role="form" ng-submit="saveUser()">
-                <fieldset>
-                  <legend></legend>
-                    <div class="form-group">
-                      <label class="col-lg-2 control-label">Username</label>
-                      <div class="col-lg-3">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Nombre Usuario" ng-model="username">
-                      </div>
-                    </div>
-                  <div class="form-group">
-                    <label class="col-lg-2 control-label">Password</label>
-                    <div class="col-lg-3">
-                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="password">
-                    </div>
-                  </div>
-                    <div class="form-group">
-                      <label class="col-lg-2 control-label">Email</label>
-                      <div class="col-lg-3">
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Email" ng-model="email">
-                      </div>
-                    </div>
-                  <div class="form-group">
-                    <label class="col-lg-2 control-label">Permiso</label>
-                    <div class="col-lg-3">
-                      <select class="form-control" id="permiso" name="permiso" ng-model="permiso">
-                        <option value="ADMIN" >ADMIN</option>
-                        <option value="ENCUESTADOR">ENCUESTADOR</option>
-                        <option value="ENCUESTADO">ENCUESTADO</option>
-                      </select>
-                      </div>
-                    </div>
-                  <!--<div class="form-group">
-                    <label for="textArea" class="col-lg-2 control-label">Textarea</label>
-                    <div class="col-lg-10">
-                      <textarea class="form-control" rows="3" id="textArea"></textarea>
-                      <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-lg-2 control-label">Radios</label>
-                    <div class="col-lg-10">
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-                          Option one is this
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                          Option two can be something else
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="select" class="col-lg-2 control-label">Selects</label>
-                    <div class="col-lg-10">
-                      <select class="form-control" id="select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                      <br>
-                      <select multiple="" class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>-
-                  <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                      <button type="reset" class="btn btn-default">Cancel</button>
-                        <input type="submit" value="Submit" class="btn btn-primary"/>
-                    </div>
-                  </div>
-                </fieldset>
-              </form>-->
     <div id="todo-form" class="row">
         <div class="col-sm-8 col-sm-offset-2 text-center">
             <form>
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg text-center" placeholder="Inserta un usuario nuevo" ng-model="formData.username">
-                     <input type="text" class="form-control input-lg text-center" placeholder="Inserta un password nuevo" ng-model="formData.password">
-                     <input type="text" class="form-control input-lg text-center" placeholder="Inserta un email nuevo" ng-model="formData.email">
-                     <select class="form-control input-lg text-center" id="permiso" name="permiso" ng-model="formData.permiso">
-                            <option value="ADMIN">ADMIN</option>
-                            <option value="ENCUESTADOR">ENCUESTADOR</option>
-                            <option value="ENCUESTADO">ENCUESTADO</option>
-                     </select>
+                    <input type="text" class="form-control input-lg text-center" placeholder="Nombre del usuario" ng-model="formData.username">
+                     <input type="text" class="form-control input-lg text-center" placeholder="Contraseña del usuario" ng-model="formData.password">
+                     <input type="text" class="form-control input-lg text-center" placeholder="Email del usuario" ng-model="formData.email">
+
                 </div>
-                <button class="btn btn-primary btn-lg" ng-click="crearUsuario()">
-                 Añadir
-                </button>
+                <a href="/usuarios" class="btn btn-primary btn-lg" ng-click="crearUsuario()">Añadir</a>
             </form>
         </div>
     </div>
