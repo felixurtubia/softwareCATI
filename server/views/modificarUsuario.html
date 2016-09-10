@@ -43,6 +43,9 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <h1>{{title3}}</h1>
+    <h2>Rellene los campos que desea modificar</h2>
+
     <div id="todo-form" class="row">
         <div class="col-sm-8 col-sm-offset-2 text-center">
             <form>
@@ -50,9 +53,9 @@
                     <input type="text" class="form-control input-lg text-center" placeholder="Nombre del usuario" ng-model="formData.username">
                     <input type="text" class="form-control input-lg text-center" placeholder="Contraseña del usuario" ng-model="formData.password">
                     <input type="text" class="form-control input-lg text-center" placeholder="Email del usuario" ng-model="formData.email">
-
+                    <input type="hidden" value=user.id ng-model="formData.id">
                 </div>
-                <a href="/usuarios" class="btn btn-primary btn-lg" ng-click="updateUsuario(user.id)">Añadir</a>
+                <a href="/usuarios" class="btn btn-primary btn-lg" ng-click="updateUsuario()">Modificar</a>
             </form>
         </div>
     </div>

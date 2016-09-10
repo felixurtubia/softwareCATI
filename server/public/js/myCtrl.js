@@ -4,6 +4,7 @@ var app = angular.module("myApp",[]);
 app.controller("myCtrl", function($scope,$http) {
     $scope.title="Usuarios registrados";
     $scope.title2="Registrar Usuario";
+    $scope.title3="modificar Usuario";
     $scope.formData = {};
     /*$scope.firstName = "John";
     $scope.lastName= "Doe";*/
@@ -36,10 +37,11 @@ app.controller("myCtrl", function($scope,$http) {
                 console.log('Error:' + data);
             });
     };
-    $scope.updateUsuario = function (id) {
-        $http.put('/api/usuarios/' + id)
+    $scope.updateUsuario = function(id) {
+        $http.post('/api/usuarios/modificar', $scope.formData)
             .success(function(data){
-                $scope.todos(data);
+                $scope.formData = {};
+                $scope.todos = data;
                 console.log(data);
             })
             .error(function (data) {
