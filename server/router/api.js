@@ -83,8 +83,6 @@ router.get('/usuarios/:id', function(req, res, next) {
 //POST crear usuario
 router.post('/usuarios', function(req,res,next){
     try{
-        console.log(req.body.permiso);
-        var resultado=[];
         models.Usuario.create({
             username: req.body.username,
             password: req.body.password,
@@ -98,9 +96,17 @@ router.post('/usuarios', function(req,res,next){
     }
 });
 
-router.post('/usuarios/modificar', function(req,res,next){
+router.post('/modificarUsuario', isLoggedIn, isAdmin, function (req,res) {
+    res.redirect('/modificarUsuario', {
+        title: 'Modificar Usuario',
+        user: req.user,
+        id: req.body.id
+    })
+});
+
+router.post('/usuario_u', function(req,res,next){
     try{
-        models.Usuario.findById(req.body.id).then(function(user) {
+        models.Usuario.findOne({ where: {id:req.body.id} }).then(function(user) {
                     if(req.body.username != null){
                         if(req.body.email != null) {
                             if(req.body.password != null){
@@ -108,22 +114,16 @@ router.post('/usuarios/modificar', function(req,res,next){
                                     username: req.body.username,
                                     email: req.body.email,
                                     password: req.body.password
-                                }).then(function (result) {
-                                    res.json(result);
                                 })
                             }
                             user.updateAttributes({
                                 username: req.body.username,
                                 email: req.body.email
-                            }).then(function (result) {
-                                res.json(result);
                             })
                         }
                         else {
                             user.updateAttributes({
                                 username: req.body.username
-                            }).then(function (result) {
-                                res.json(result);
                             })
                         }
 
@@ -153,7 +153,6 @@ router.post('/usuarios/modificar', function(req,res,next){
 		return next(ex);
 	}
 });
-
 router.delete('/usuarios/:id', function(req,res,next){
 	try{
 		models.Usuario.destroy({where: {id: req.params.id} }).then(function () {
@@ -168,3 +167,17 @@ router.delete('/usuarios/:id', function(req,res,next){
 	}
 });
 
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
+function isAdmin(req, res, next){
+    if (req.user.privileges)
+        return next();
+    res.redirect('..');
+}

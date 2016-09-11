@@ -54,13 +54,14 @@ module.exports = function(app, passport) {
             user : req.user
         });
     });
-    app.get('/modificarUsuario', isLoggedIn, isAdmin, function (req,res) {
+    app.post('/modificarUsuario', isLoggedIn, isAdmin, function (req,res) {
         res.render('modificarUsuario.html', {
             title: 'Modificar Usuario',
-            user: req.user
-        })
-    })
-}
+            user: req.user,
+            id: JSON.stringify(req.body.id)
+        });
+    });
+};
 
 function isLoggedIn(req, res, next) {
 

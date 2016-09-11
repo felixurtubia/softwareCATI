@@ -70,7 +70,8 @@
             <td>{{usuario.password}}</td>
             <td>{{usuario.email}}</td>
             <td><a href="#" class="btn btn-default btn-sm">Ver actividad</a></td>
-            <td><a href="/modificarUsuario" class="btn btn-default btn-sm">Modificar</a></td>
+            <!--<td><a href="/modificarUsuario/?id={{usuario.id}}" class="btn btn-default btn-sm"> Modificar ref</a></td>-->
+            <td><form action="/modificarUsuario" method="post"><button class="btn btn-default btn-sm" type="submit" value="{{usuario.id}}" name="id" >Modificar</button></form></td>
             <td><a href="/usuarios" class="btn btn-default btn-sm" ng-click="deleteUsuario(usuario.id)">Eliminar</a></td>
 
         </tr>
