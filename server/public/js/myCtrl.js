@@ -38,9 +38,10 @@ app.controller("myCtrl", function($scope,$http) {
             });
     };
     $scope.updateUsuario = function(id) {
-        $http.post('/api/usuarios/modificar', $scope.formData)
+        $http.post('/api/usuario_u', {formData : $scope.formData, id: id })
             .success(function(data){
                 $scope.formData = {};
+                alert('datos guardados correctamente');
                 $scope.todos = data;
                 console.log(data);
             })

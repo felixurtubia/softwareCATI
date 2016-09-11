@@ -13,8 +13,7 @@ module.exports = function(app, passport) {
     }));
 
 
-    // process the signup form
-
+//DASHBOARD USUARIO Y ADMIN
     app.get('/dashboard', isLoggedIn, function(req, res) {
         if(req.user){
             if(req.user.privileges){
@@ -29,38 +28,47 @@ module.exports = function(app, passport) {
         }
     });
 
+//LOGOUT
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
+
+//PESTAÑA PROYECTOS
     app.get('/proyectos',isLoggedIn, isAdmin, function (req,res) {
          res.render('proyectos.html', {
             user :req.user
         })
     });
 
+//PESTAÑA USUARIOS
     app.get('/usuarios', isLoggedIn, isAdmin,function (req,res) {
         res.render('usuarios.html',{
             user : req.user
         });
     });
-    app.get('/verUsuario',isLoggedIn, isAdmin, function (req, res) {
-        if(req.user.privileges) res.render('VerUsuario.html');
-    });
 
+//VISTA NUEVO USUARIO
     app.get('/crearUsuario', isLoggedIn, isAdmin, function (req, res) {
         res.render('crearUsuario.html', {
             title: 'Registrar Usuarios',
             user : req.user
         });
     });
-    app.get('/modificarUsuario', isLoggedIn, isAdmin, function (req,res) {
+
+//VISTA MODIFICAR USUARIO
+    app.post('/modificarUsuario', isLoggedIn, isAdmin, function (req,res) {
         res.render('modificarUsuario.html', {
             title: 'Modificar Usuario',
-            user: req.user
-        })
-    })
-}
+            user: req.user,
+            id: JSON.stringify(req.body.id)
+        });
+    });
+
+    app.get('/upload', isLoggedIn,function (req,res) {
+        res.render('SubirArchivo.html');
+    });
+};
 
 function isLoggedIn(req, res, next) {
 
