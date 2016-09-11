@@ -8,7 +8,11 @@ var url = require('url');
 //var Usuario= require('../models/usuario.js');
 var models  = require('../models');
 
-
+//PARA EL CSV
+var fs = require('fs');
+var parse = require('csv-parse');
+var path = require('path');
+var busboy = require('connect-busboy');
 
 // Routes
 
@@ -96,14 +100,7 @@ router.post('/usuarios', function(req,res,next){
     }
 });
 
-router.post('/modificarUsuario', isLoggedIn, isAdmin, function (req,res) {
-    res.redirect('/modificarUsuario', {
-        title: 'Modificar Usuario',
-        user: req.user,
-        id: req.body.id
-    })
-});
-
+//MODIFICAR USUARIO
 router.post('/usuario_u', function(req,res,next){
     try{
         models.Usuario.findOne({ where: {id:req.body.id} }).then(function(user) {
@@ -153,6 +150,8 @@ router.post('/usuario_u', function(req,res,next){
 		return next(ex);
 	}
 });
+
+//ELIMINAR USUARIO
 router.delete('/usuarios/:id', function(req,res,next){
 	try{
 		models.Usuario.destroy({where: {id: req.params.id} }).then(function () {
@@ -167,17 +166,48 @@ router.delete('/usuarios/:id', function(req,res,next){
 	}
 });
 
-function isLoggedIn(req, res, next) {
+//SUBIR Y LEER ARCHIVO CSV (USO DE BUSBOY)
+router.use(busboy());
+router.post('/upload',function (req,res,next) {
+    try{
+        var fstream;
+        req.pipe(req.busboy);
+        req.busboy.on('file', function (fieldname, file, filename) {
 
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
+            /*console.log("Uploading: " + filename);
+             console.log("DirName: " + __dirname);
+             console.log("fieldname: " +fieldname);*/
 
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-}
-function isAdmin(req, res, next){
-    if (req.user.privileges)
-        return next();
-    res.redirect('..');
-}
+            // Se crea en router/files con el nombre del archivo
+            fstream = fs.createWriteStream(__dirname + '/files/' + filename);
+            file.pipe(fstream);
+            fstream.on('close', function () {
+                var csvData=[];
+                fs.createReadStream(__dirname + '/files/' + filename)
+                    .pipe(parse({delimiter: ','}))
+                    .on('data', function(csvrow) {
+
+                        //Agrega por fila a la base de datos
+                        models.Contacto.create({
+                            name: csvrow[0],
+                            lastname: csvrow[1],
+                            number: csvrow[2],
+                            state: csvrow[3]
+                        });
+
+                        csvData.push(csvrow);
+                    })
+                    .on('end',function() {
+                        //do something wiht csvData
+                        //CsvData es un arreglo de arreglos
+                        console.log(csvData);
+                    });
+                res.redirect('/upload');
+            });
+        });
+    }
+    catch(ex){
+        console.error('No se pudo leer archivo:' +ex);
+        return next(ex)
+    }
+});
