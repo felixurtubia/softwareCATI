@@ -61,12 +61,14 @@ module.exports = function(app, passport) {
         res.render('modificarUsuario.html', {
             title: 'Modificar Usuario',
             user: req.user,
-            id: JSON.stringify(req.body.id)
+            id: req.body.id
         });
     });
 
-    app.get('/upload', isLoggedIn,function (req,res) {
-        res.render('SubirArchivo.html');
+    app.get('/upload',isAdmin, isLoggedIn, function (req,res) {
+        res.render('SubirArchivo.html', {
+            user: req.user
+        });
     });
 };
 
