@@ -186,7 +186,7 @@ router.post('/upload',function (req,res,next) {
                 fs.createReadStream(__dirname + '/files/' + filename)
                     .pipe(parse({delimiter: ','}))
                     .on('data', function(csvrow) {
-
+                        //console.log(csvrow[0]);
                         //Agrega por fila a la base de datos
                         models.Contacto.create({
                             name: csvrow[0],
@@ -200,7 +200,6 @@ router.post('/upload',function (req,res,next) {
                     .on('end',function() {
                         //do something wiht csvData
                         //CsvData es un arreglo de arreglos
-                        console.log(csvData);
                     });
                 res.redirect('/upload');
             });

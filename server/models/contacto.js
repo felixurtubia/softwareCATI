@@ -7,7 +7,10 @@
 var Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
     var Contacto = sequelize.define("Contacto", {
-        nombre: DataTypes.STRING,
+        name: DataTypes.STRING,
+        lastname: DataTypes.STRING,
+        number: DataTypes.STRING,
+        state: DataTypes.STRING,
     }, {
         classMethods: {
             proyectoAssociate: function(models) {
