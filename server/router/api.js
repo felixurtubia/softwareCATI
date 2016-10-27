@@ -20,7 +20,7 @@ var busboy = require('connect-busboy');
 module.exports = router;
 
 //POST crear proyecto
-router.post('/proyectos',function (req,res,next) {
+router.post('/proyectos', isLoggedIn, isAdmin,function (req,res,next) {
     try{
         console.log(req.body.nombre);
         models.Proyecto.create({
@@ -36,10 +36,10 @@ router.post('/proyectos',function (req,res,next) {
         console.error('No se pudo crear proyecto:' +ex);
         return next(ex)
     }
-})
+});
 
 //GET usuarios
-router.get('/usuarios', function(req, res, next) {
+router.get('/usuarios', isLoggedIn, function(req, res, next) {
 	try {
 		/*var query = url.parse(req.url,true).query;
 		 console.log(query);*/
@@ -62,7 +62,7 @@ router.get('/usuarios', function(req, res, next) {
 });
 
 //GET un usuario con id determinado
-router.get('/usuarios/:id', function(req, res, next) {
+router.get('/usuarios/:id', isLoggedIn, function(req, res, next) {
 	try {
 		//var query = url.parse(req.url,true).query;
 		//console.log(query);
@@ -85,7 +85,7 @@ router.get('/usuarios/:id', function(req, res, next) {
 });
 
 //POST crear usuario
-router.post('/usuarios', function(req,res,next){
+router.post('/usuarios', isLoggedIn, isAdmin, function(req,res,next){
     try{
         models.Usuario.create({
             username: req.body.username,
@@ -100,50 +100,37 @@ router.post('/usuarios', function(req,res,next){
     }
 });
 
-//MODIFICAR USUARIO
-router.post('/usuario_u', function(req,res,next){
+router.get('/modificarUsuario/:id', isLoggedIn, isAdmin,function (req,res,next) {
     try{
-        models.Usuario.findOne({ where: {id:req.body.id} }).then(function(user) {
-                    if(req.body.username != null){
-                        if(req.body.email != null) {
-                            if(req.body.password != null){
-                                user.updateAttributes({
-                                    username: req.body.username,
-                                    email: req.body.email,
-                                    password: req.body.password
-                                })
-                            }
-                            user.updateAttributes({
-                                username: req.body.username,
-                                email: req.body.email
-                            })
-                        }
-                        else {
-                            user.updateAttributes({
-                                username: req.body.username
-                            })
-                        }
+        models.Usuario.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (usuario) {
+            res.render('modificarUsuario.html',{resultado: usuario, title:"modificar Usuario"});
+        })
+    } catch(ex) {
+        console.error("Internal Error:" + ex);
+        return next(ex);
+    }
+});
 
-                    }
-                    else if (req.body.email != null) {
-                        if (req.body.password != null) {
-                            user.updateAttributes({
-                                email: req.body.email,
-                                password: req.body.password
-                            })
-                        }
-                        else {
-                            user.updateAttributes({
-                                email: req.body.password
-                            })
-                        }
-                    }
-                    else {
-                        user.updateAttributes({
-                            password: req.body.password
-                        })
-                    }
-                });
+//MODIFICAR USUARIO
+router.post('/modificarUsuario/:id', isLoggedIn, isAdmin,function(req,res,next){
+    try{
+        models.Usuario.findOne({
+            where: {
+                id:req.params.id
+            }
+        }).then(function(user) {
+            user.updateAttributes({
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password
+            });
+
+        });
+        res.redirect('/usuarios');
 	}
 	catch(ex){
 		console.error("Internal error:"+ex);
@@ -152,7 +139,7 @@ router.post('/usuario_u', function(req,res,next){
 });
 
 //ELIMINAR USUARIO
-router.delete('/usuarios/:id', function(req,res,next){
+router.delete('/usuarios/:id', isLoggedIn, isAdmin, function(req,res,next){
 	try{
 		models.Usuario.destroy({where: {id: req.params.id} }).then(function () {
 			return models.Usuario.findAll().then(function (user) {
@@ -210,3 +197,18 @@ router.post('/upload',function (req,res,next) {
         return next(ex)
     }
 });
+
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
+function isAdmin(req, res, next){
+    if (req.user.privileges)
+        return next();
+    res.redirect('..');
+}

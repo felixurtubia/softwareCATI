@@ -57,12 +57,8 @@ module.exports = function(app, passport) {
     });
 
 //VISTA MODIFICAR USUARIO
-    app.post('/modificarUsuario', isLoggedIn, isAdmin, function (req,res) {
-        res.render('modificarUsuario.html', {
-            title: 'Modificar Usuario',
-            user: req.user,
-            id: req.body.id
-        });
+    app.get('/modificarUsuario/:id', isLoggedIn, isAdmin, function (req,res) {
+        res.redirect('../api/modificarUsuario/'+req.params.id);
     });
 
     app.get('/upload',isAdmin, isLoggedIn, function (req,res) {

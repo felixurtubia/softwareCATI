@@ -6,8 +6,7 @@ app.controller("myCtrl", function($scope,$http) {
     $scope.title2="Registrar Usuario";
     $scope.title3="modificar Usuario";
     $scope.formData = {};
-    /*$scope.firstName = "John";
-    $scope.lastName= "Doe";*/
+
     $http.get('/api/usuarios')
         .success(function(data) {
             $scope.users = data;
@@ -16,6 +15,16 @@ app.controller("myCtrl", function($scope,$http) {
         .error(function(data) {
             console.log('Error: ' + data);
         });
+    $scope.getUsuario = function(id) {
+        $http.get('/api/usuarios/' + id)
+            .success(function(data){
+                $scope.user = data;
+                console.log(data)
+            })
+            .error(function (data) {
+                console.log('Error: ' + data)
+            });
+    }
     $scope.crearUsuario = function(){
         $http.post('/api/usuarios', $scope.formData)
             .success(function(data) {
@@ -35,18 +44,6 @@ app.controller("myCtrl", function($scope,$http) {
             })
             .error(function(data) {
                 console.log('Error:' + data);
-            });
-    };
-    $scope.updateUsuario = function(id) {
-        $http.post('/api/usuario_u', {formData : $scope.formData, id: id })
-            .success(function(data){
-                $scope.formData = {};
-                alert('datos guardados correctamente');
-                $scope.todos = data;
-                console.log(data);
-            })
-            .error(function (data) {
-                console.log('Error: ' + data);
             });
     };
 });
