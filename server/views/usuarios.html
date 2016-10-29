@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-    <meta charset="UTF-8">
     <title>Usuarios</title>
 
 
@@ -14,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
     <script src="/js/myCtrl.js"></script>
 </head>
-<body ng-controller="myCtrl">
+<body ng-controller="controladorUsuarios">
 
     <!--NAVBAR-->
     <nav class="navbar navbar-default">
@@ -71,7 +70,7 @@
             <td>{{usuario.email}}</td>
             <td><a href="#" class="btn btn-default btn-sm">Ver actividad</a></td>
             <td><a href="/modificarUsuario/{{usuario.id}}" class="btn btn-default btn-sm">Modificar</a></td>
-            <td><a href="/usuarios" class="btn btn-default btn-sm" ng-click="deleteUsuario(usuario.id)">Eliminar</a></td>
+            <td><a href="/usuarios" class="btn btn-default btn-sm" ng-click="eliminarUsuario(usuario.id)">Eliminar</a></td>
 
         </tr>
         </tbody>

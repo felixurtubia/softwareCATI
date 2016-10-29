@@ -36,10 +36,15 @@ module.exports = function(app, passport) {
 
 //PESTAÑA PROYECTOS
     app.get('/proyectos',isLoggedIn, isAdmin, function (req,res) {
-         res.render('proyectos.html', {
+         res.render('proyectosAdmin.html', {
             user :req.user
         })
     });
+/*PESTAÑA MODIFICAR PROYECTO*/
+    app.get('/modificarProyecto/:id', isLoggedIn, isAdmin, function (req, res) {
+        res.render('modificarProyecto.html',{id : req.params.id});
+    });
+
 
 //PESTAÑA USUARIOS
     app.get('/usuarios', isLoggedIn, isAdmin,function (req,res) {

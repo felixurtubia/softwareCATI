@@ -19,7 +19,7 @@ var busboy = require('connect-busboy');
 //Return router
 module.exports = router;
 
-//POST crear proyecto
+//Crear proyecto
 router.post('/proyectos', isLoggedIn, isAdmin,function (req,res,next) {
     try{
         console.log(req.body.nombre);
@@ -27,7 +27,7 @@ router.post('/proyectos', isLoggedIn, isAdmin,function (req,res,next) {
             nombre: req.body.nombre,
             creador: req.user.email,
         });
-        res.render('proyectos.html', {
+        res.render('proyectosAdmin.html', {
             user :req.user
 
         })
@@ -38,7 +38,59 @@ router.post('/proyectos', isLoggedIn, isAdmin,function (req,res,next) {
     }
 });
 
-//GET usuarios
+//Modificar Proyecto
+router.post('/modificarProyecto/:id', isLoggedIn, isAdmin,function(req,res,next){
+    try{
+        models.Proyecto.findOne({
+            where: {
+                id:req.params.id
+            }
+        }).then(function(proyecto) {
+            proyecto.updateAttributes({
+                nombre: req.body.nombre
+            });
+        });
+        res.redirect('/proyectos');
+    }
+    catch(ex){
+        console.error("Internal error:"+ex);
+        return next(ex);
+    }
+});
+
+//Eliminar Proyecto
+router.delete('/proyectos/:id', isLoggedIn, isAdmin, function(req,res,next){
+    try{
+        models.Proyecto.destroy({where: {id: req.params.id} }).then(function () {
+            return models.Proyecto.findAll().then(function (proyecto) {
+                res.json(proyecto);
+            })
+        })
+    }
+    catch(ex){
+        console.error("Internal error:"+ex);
+        return next(ex);
+    }
+});
+
+//Obtener proyectos
+router.get('/proyectos', isLoggedIn, function(req, res, next) {
+    try {
+        /*var query = url.parse(req.url,true).query;
+         console.log(query);*/
+        models.Proyecto.findAll({
+            attributes: ['id', 'nombre']
+        }).then(function (user) {
+            res.json(user);
+        });
+        //res.render('VerUsuario.html', {title: 'Listar Usuarios'});
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return next(ex);
+    }
+});
+
+//Obetener usuarios
 router.get('/usuarios', isLoggedIn, function(req, res, next) {
 	try {
 		/*var query = url.parse(req.url,true).query;
@@ -61,7 +113,7 @@ router.get('/usuarios', isLoggedIn, function(req, res, next) {
 	}
 });
 
-//GET un usuario con id determinado
+//Obtener un usuario con id determinado
 router.get('/usuarios/:id', isLoggedIn, function(req, res, next) {
 	try {
 		//var query = url.parse(req.url,true).query;
@@ -84,7 +136,7 @@ router.get('/usuarios/:id', isLoggedIn, function(req, res, next) {
 	}
 });
 
-//POST crear usuario
+//Crear usuario
 router.post('/usuarios', isLoggedIn, isAdmin, function(req,res,next){
     try{
         models.Usuario.create({
@@ -100,6 +152,7 @@ router.post('/usuarios', isLoggedIn, isAdmin, function(req,res,next){
     }
 });
 
+//Buscar un usuario para ser modificado
 router.get('/modificarUsuario/:id', isLoggedIn, isAdmin,function (req,res,next) {
     try{
         models.Usuario.findOne({
