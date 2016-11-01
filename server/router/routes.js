@@ -33,12 +33,22 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
+    
+//PROYECTO
+    app.get('/proyecto/:id', isLoggedIn, function (req,res) {
+        res.render("proyecto.html");
+    });
 
 //PESTAÑA PROYECTOS
-    app.get('/proyectos',isLoggedIn, isAdmin, function (req,res) {
-         res.render('proyectosAdmin.html', {
-            user :req.user
-        })
+    app.get('/proyectos',isLoggedIn, function (req,res) {
+        if (req.user.privileges)
+            res.render("proyectosAdmin.html", {
+                user:req.user
+            });
+        else
+            res.render("proyectosUser.html",{
+                user :req.user
+            });
     });
 /*PESTAÑA MODIFICAR PROYECTO*/
     app.get('/modificarProyecto/:id', isLoggedIn, isAdmin, function (req, res) {

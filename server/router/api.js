@@ -76,14 +76,11 @@ router.delete('/proyectos/:id', isLoggedIn, isAdmin, function(req,res,next){
 //Obtener proyectos
 router.get('/proyectos', isLoggedIn, function(req, res, next) {
     try {
-        /*var query = url.parse(req.url,true).query;
-         console.log(query);*/
         models.Proyecto.findAll({
             attributes: ['id', 'nombre']
         }).then(function (user) {
             res.json(user);
         });
-        //res.render('VerUsuario.html', {title: 'Listar Usuarios'});
     } catch (ex) {
         console.error("Internal error:" + ex);
         return next(ex);
@@ -124,11 +121,7 @@ router.get('/usuarios/:id', isLoggedIn, function(req, res, next) {
 				id: req.params.id
 			}
 		}).then(function (user) {
-			//for(var x=0;x<user.length;x++){
-			//console.log(user[x].username);
-			//console.log(user.get('username'));
 			res.json(user);
-			//}
 		});
 	} catch (ex) {
 		console.error("Internal error:" + ex);

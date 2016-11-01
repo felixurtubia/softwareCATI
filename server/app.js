@@ -30,10 +30,13 @@ app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secre
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+
 //app.use(express.static(path.join(__dirname, 'angular')));
 require('./router/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 require('./config/passport')(passport); // pass passport for configuration
 app.use(express.static('public'));
+
+//skype
 
 
 
