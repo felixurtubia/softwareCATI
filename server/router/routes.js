@@ -50,6 +50,14 @@ module.exports = function(app, passport) {
                 user :req.user
             });
     });
+
+    //VISTA NUEVO proyecto
+    app.get('/CrearProyecto', isLoggedIn, isAdmin, function (req, res) {
+        res.render('CrearProyecto.html', {
+            title: 'Crear Proyecto',
+            user : req.user
+        });
+    });
 /*PESTAÑA MODIFICAR PROYECTO*/
     app.get('/modificarProyecto/:id', isLoggedIn, isAdmin, function (req, res) {
         res.render('modificarProyecto.html',{id : req.params.id});
