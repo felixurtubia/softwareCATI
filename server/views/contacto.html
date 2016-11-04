@@ -67,7 +67,8 @@
 <!--breadcrumbs-->
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a></div>
+        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="#" class="tip-bottom">Proyectos</a> <a href="#" class="current">NOMBRE PROYECTO</a> </div>
+        <h1>Contacto</h1>
     </div>
     <!--End-breadcrumbs-->
     <div class="container-fluid">
@@ -75,14 +76,26 @@
             <div class="span6">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                        <h5>Mi informacion</h5>
+                        <h5>Informacion de Contacto</h5>
                     </div>
                     <div class="widget-content nopadding">
                         <p>
-                            <strong> Id</strong>: <%= user.id %><br>
-                            <strong> Email</strong>: <%= user.email %><br>
-                            <strong> Password</strong>: <%= user.password %><br>
-                            <a class="btn btn-primary" href="/contacto">IR A CONTACTO</a><br>
+                            <strong> Nombre</strong>: <%= user.id %><br>
+                            <strong> Apellido</strong>: <%= user.email %><br>
+                            <strong> Numero</strong>: <%= user.password %><br>
+                            <strong> Estado</strong>: <%= user.password %><br>
+                            <!--<strong> <a class="btn btn-primary" href="skype:echo123?call">Call</a> <br> -->
+                            <script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+                            <div id="SkypeButton_Call_echo123">
+                            <script type="text/javascript">
+                                Skype.ui({
+                                    "name": "call",
+                                    "element": "SkypeButton_Call_echo123",
+                                    "participants": ["echo123"],
+                                    "imageSize": 32
+                                });
+                            </script>
+                        </div>
                         </p>
                     </div>
                 </div>

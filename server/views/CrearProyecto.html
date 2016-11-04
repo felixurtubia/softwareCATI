@@ -80,6 +80,14 @@
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                         <h5>Informacion de Proyecto</h5>
+                        <% if (confirmation.length > 0) { %>
+
+                            <div class="alert alert-success">
+                                <button class="close" data-dismiss="alert">×</button>
+                                <strong>Success</strong> <%= message %> </div>
+                            </div>
+
+                        <% } %>
                     </div>
 
                     <div class="widget-content nopadding">

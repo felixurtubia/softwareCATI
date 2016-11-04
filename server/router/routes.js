@@ -36,7 +36,9 @@ module.exports = function(app, passport) {
     
 //PROYECTO
     app.get('/proyecto/:id', isLoggedIn, function (req,res) {
-        res.render("proyecto.html");
+        res.render("proyecto.html",{
+            user : req.user
+        });
     });
 
 //PESTAÑA PROYECTOS
@@ -55,12 +57,13 @@ module.exports = function(app, passport) {
     app.get('/CrearProyecto', isLoggedIn, isAdmin, function (req, res) {
         res.render('CrearProyecto.html', {
             title: 'Crear Proyecto',
+            confirmation: req.flash('info'),
             user : req.user
         });
     });
 /*PESTAÑA MODIFICAR PROYECTO*/
     app.get('/modificarProyecto/:id', isLoggedIn, isAdmin, function (req, res) {
-        res.render('modificarProyecto.html',{id : req.params.id});
+        res.render('modificarProyecto.html',{id : req.params.id,user : req.user});
     });
 
 
@@ -89,7 +92,14 @@ module.exports = function(app, passport) {
             user: req.user
         });
     });
+    app.get('/contacto', isLoggedIn, isAdmin,function (req,res) {
+        res.render('contacto.html',{
+            user : req.user
+        });
+    });
 };
+
+
 
 function isLoggedIn(req, res, next) {
 

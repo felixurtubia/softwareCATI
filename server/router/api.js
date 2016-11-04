@@ -28,8 +28,9 @@ router.post('/proyectos', isLoggedIn, isAdmin,function (req,res,next) {
             creador: req.user.email,
         });
         res.render('proyectosAdmin.html', {
-            user :req.user
-
+            user :req.user,
+            confirmation: req.flash('info','MENSAJE ES UN TOODO AAAAA'),
+            failureFlash : true
         })
     }
     catch(ex){
@@ -153,7 +154,7 @@ router.get('/modificarUsuario/:id', isLoggedIn, isAdmin,function (req,res,next) 
                 id: req.params.id
             }
         }).then(function (usuario) {
-            res.render('modificarUsuario.html',{resultado: usuario, title:"modificar Usuario"});
+            res.render('modificarUsuario.html',{resultado: usuario, title:"modificar Usuario",user : req.user});
         })
     } catch(ex) {
         console.error("Internal Error:" + ex);
