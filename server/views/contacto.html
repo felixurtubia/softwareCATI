@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CATI</title><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Matrix admin -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/colorpicker.css" />
+    <link rel="stylesheet" href="css/datepicker.css" />
+    <link rel="stylesheet" href="css/uniform.css" />
+    <link rel="stylesheet" href="css/select2.css" />
+    <link rel="stylesheet" href="css/matrix-style.css" />
+    <link rel="stylesheet" href="css/matrix-media.css" />
+    <link rel="stylesheet" href="css/bootstrap-wysihtml5.css" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://swx.cdn.skype.com/shared/v/1.2.15/SkypeBootstrap.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+</head>
+
+<body>
+<!--Header-part-->
+<div id="header">
+    <h1><a href="/dashboard">Matrix Admin</a></h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class=""><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Hola <%=user.username%></span></a></li>
+        <li class=""><a title="" href="/logout"><i class="icon icon-share-alt"></i> <span class="text">Cerrar Sesion</span></a></li>
+    </ul>
+</div>
+<!--close-top-header-->
+
+<!--sidebar-menu-->
+<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-list"></i>Forms</a>
+    <ul>
+        <li><a href="/dashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-pencil"></i> <span>Proyectos</span> </a>
+            <ul>
+                <li><a href="/proyectos">Ver Proyectos</a></li>
+                <li><a href="/CrearProyecto">Crear Proyecto</a></li>
+            </ul>
+        </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Usuarios</span> </a>
+            <ul>
+                <li><a href="/usuarios">Ver Usuarios</a></li>
+                <li><a href="/crearUsuario">Crear Usuarios</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!--close-left-menu-stats-sidebar-->
+
+<!--breadcrumbs-->
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="#" class="tip-bottom">Proyectos</a> <a href="#" class="current">NOMBRE PROYECTO</a> </div>
+        <h1>Contacto</h1>
+    </div>
+    <!--End-breadcrumbs-->
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>Informacion de Contacto</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <p>
+                            <strong> Nombre</strong>: <%= user.id %><br>
+                            <strong> Apellido</strong>: <%= user.email %><br>
+                            <strong> Numero</strong>: <%= user.password %><br>
+                            <strong> Estado</strong>: <%= user.password %><br>
+                            <!--<strong> <a class="btn btn-primary" href="skype:echo123?call">Call</a> <br> -->
+                            <script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+                            <div id="SkypeButton_Call_echo123">
+                            <script type="text/javascript">
+                                Skype.ui({
+                                    "name": "call",
+                                    "element": "SkypeButton_Call_echo123",
+                                    "participants": ["echo123"],
+                                    "imageSize": 32
+                                });
+                            </script>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Scripts de Matrix -->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.ui.custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-colorpicker.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+
+<script src="js/masked.js"></script>
+<script src="js/jquery.uniform.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/matrix.js"></script>
+<script src="js/matrix.form_common.js"></script>
+<script src="js/wysihtml5-0.3.0.js"></script>
+<script src="js/jquery.peity.min.js"></script>
+<script src="js/bootstrap-wysihtml5.js"></script>
+</body>
+
+</html>

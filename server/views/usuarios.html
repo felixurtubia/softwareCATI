@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
+    <meta charset="UTF-8">
     <title>Usuarios</title>
-
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!--Script Matrix -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/uniform.css" />
+    <link rel="stylesheet" href="css/select2.css" />
+    <link rel="stylesheet" href="css/matrix-style.css" />
+    <link rel="stylesheet" href="css/matrix-media.css" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+    <!--Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
@@ -15,66 +26,98 @@
 </head>
 <body ng-controller="controladorUsuarios">
 
-    <!--NAVBAR-->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/dashboard">Administrador <%=user.username%></a>
-            </div>
+<!--Header-part-->
+<div id="header">
+    <h1><a href="/dashboard">Matrix Admin</a></h1>
+</div>
+<!--close-Header-part-->
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/proyectos">Proyectos <span class="sr-only">(current)</span></a></li>
-                    <li><a href="/usuarios">Usuarios</a></li>
-                    <li><a href="/logout" class="btn btn-default btn-sm">Logout</a></li>
-                </ul>
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class=""><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Hola <%=user.username%></span></a></li>
+        <li class=""><a title="" href="/logout"><i class="icon icon-share-alt"></i> <span class="text">Cerrar Sesion</span></a></li>
+    </ul>
+</div>
+<!--close-top-header-->
 
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+<!--sidebar-menu-->
+<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-list"></i>Forms</a>
+    <ul>
+        <li><a href="/dashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-pencil"></i> <span>Proyectos</span> </a>
+            <ul>
+                <li><a href="/proyectos">Ver Proyectos</a></li>
+                <li><a href="/CrearProyecto">Crear Proyecto</a></li>
+            </ul>
+        </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Usuarios</span> </a>
+            <ul>
+                <li><a href="/usuarios">Ver Usuarios</a></li>
+                <li><a href="/CrearUsuario">Crear Usuarios</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!--close-left-menu-stats-sidebar-->
 
-    <!-- CREAR UN NUEVO USUARIO -->
-
-    <a href="/crearUsuario" class="btn btn-default btn-sm">Crear usuario</a>
-
-    <!-- LISTA DE USUARIOS -->
-    <div>
+<!--breadcrumbs-->
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="#" class="tip-bottom">Usuarios</a> <a href="#" class="current">Ver Usuarios</a> </div>
         <h1>{{title}}</h1>
     </div>
+    <!--End-breadcrumbs-->
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+                        <h5>Usuarios Existentes</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th> ID </th>
+                                <th> Username </th>
+                                <th> Password </th>
+                                <th> Email </th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="usuario in users">
+                                <td class="center">{{usuario.id}}</td>
+                                <td class="center">{{usuario.username}}</td>
+                                <td class="center">{{usuario.password}}</td>
+                                <td class="center">{{usuario.email}}</td>
+                                <td class="center"><a href="#" class="btn btn-primary">Ver actividad</a></td>
+                                <td><a href="/modificarUsuario/{{usuario.id}}" class="btn btn-primary">Modificar</a></td>
+                                <td><a href="/usuarios" class="btn btn-primary" ng-click="eliminarUsuario(usuario.id)">Eliminar</a></td>
+                            </tr>
+                            </tbody>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th> ID </th>
-            <th> Username </th>
-            <th> Password </th>
-            <th> Email </th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="usuario in users">
-            <td>{{usuario.id}}</td>
-            <td>{{usuario.username}}</td>
-            <td>{{usuario.password}}</td>
-            <td>{{usuario.email}}</td>
-            <td><a href="#" class="btn btn-default btn-sm">Ver actividad</a></td>
-            <td><a href="/modificarUsuario/{{usuario.id}}" class="btn btn-default btn-sm">Modificar</a></td>
-            <td><a href="/usuarios" class="btn btn-default btn-sm" ng-click="eliminarUsuario(usuario.id)">Eliminar</a></td>
-
-        </tr>
-        </tbody>
-    </table>
-
+<!--Script tablas -->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.ui.custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.uniform.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/matrix.js"></script>
+<script src="js/matrix.tables.js"></script>
 </body>
 </html>
