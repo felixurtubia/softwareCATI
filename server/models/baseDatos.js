@@ -10,15 +10,15 @@ module.exports = function(sequelize, DataTypes) {
         nombre: DataTypes.STRING,
     }, {
         classMethods: {
-            proyectoAssociate: function(models) {
+            proyecto_baseDatosAssociate: function(models) {
                 BaseDatos.belongsTo(models.Proyecto, {
                     onDelete: "CASCADE",
-                    foreignKey: {
+                    foreignKey:{
                         allowNull: false
                     }
                 });
             },
-            contactoAssociate: function (models) {
+            baseDatos_contactoAssociate: function (models) {
                 BaseDatos.hasMany(models.Contacto, {
                     onDelete: "CASCADE",
                     foreignKey:{
@@ -29,6 +29,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-
     return BaseDatos;
 };

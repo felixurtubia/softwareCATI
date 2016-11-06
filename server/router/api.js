@@ -214,6 +214,9 @@ router.post('/upload',function (req,res,next) {
 
             // Se crea en router/files con el nombre del archivo
             fstream = fs.createWriteStream(__dirname + '/files/' + filename);
+            models.BaseDatos.create({
+                nombre: filename
+            });
             file.pipe(fstream);
             fstream.on('close', function () {
                 var csvData=[];
@@ -222,11 +225,13 @@ router.post('/upload',function (req,res,next) {
                     .on('data', function(csvrow) {
                         //console.log(csvrow[0]);
                         //Agrega por fila a la base de datos
+
                         models.Contacto.create({
                             name: csvrow[0],
                             lastname: csvrow[1],
                             number: csvrow[2],
-                            state: csvrow[3]
+                            state: csvrow[3],
+                            basededatos: filename
                         });
 
                         csvData.push(csvrow);
@@ -235,9 +240,12 @@ router.post('/upload',function (req,res,next) {
                         //do something wiht csvData
                         //CsvData es un arreglo de arreglos
                     });
-                res.redirect('/upload');
+
             });
         });
+        req.flash('info', 'You need to be authenticated to access this page');
+        console.log(req.flash('info'))
+        res.redirect('/upload');
     }
     catch(ex){
         console.error('No se pudo leer archivo:' +ex);

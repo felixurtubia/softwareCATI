@@ -4,14 +4,14 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    var Proyecto = sequelize.define("Proyecto", {
-        nombre: DataTypes.STRING,
-        creador: DataTypes.STRING
+    var Error = sequelize.define("Error", {
+        tipo: DataTypes.STRING,
+        sesionid: DataTypes.INTEGER
 
     },{
         classMethods: {
-            proyecto_baseDatosAssociate: function (models) {
-                BaseDatos.belongsTo(models.Proyecto, {
+            sesion_errorAssociate: function (models) {
+                Error.belongsTo(models.Sesion, {
                     onDelete: "CASCADE",
                     foreignKey: {
                         allowNull: false
@@ -20,5 +20,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    return Proyecto;
+    return Error;
 };

@@ -8,23 +8,19 @@ module.exports = function(sequelize, DataTypes) {
         privileges: DataTypes.BOOLEAN
     }/*, {
         classMethods: {
-            associate: function(models) {
-                Usuario.hasMany(models.Rol)
+                sesion_usuarioAssociate: function (models) {
+                 Sesion.belongsTo(models.Encuesta, {
+                        onDelete: "CASCADE",
+                        foreignKey: {
+                                    allowNull: false
+                                    }
+            });
+     },
             }
         }
-    }*/);
+    }*/
+
+    );
     return Usuario;
 };
 
-
-/*sequelize.sync({force: true}).then(function() {
- return Usuario.create({
- username: 'janedoe',
- password: 'pass123',
- email: 'janedoe@gmail.com',
- });
- }).then(function(jane) {
- console.log(jane.get({
- plain: true
- }));
- });*/

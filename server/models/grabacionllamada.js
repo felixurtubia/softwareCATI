@@ -4,14 +4,12 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    var Proyecto = sequelize.define("Proyecto", {
-        nombre: DataTypes.STRING,
-        creador: DataTypes.STRING
-
+    var GrabacionLlamada = sequelize.define("GrabacionLlamada", {
+        duracion: DataTypes.INTEGER
     },{
         classMethods: {
-            proyecto_baseDatosAssociate: function (models) {
-                BaseDatos.belongsTo(models.Proyecto, {
+            llamada_grabacionllamadaAssociate: function (models) {
+                GrabacionLlamada.hasOne(models.Llamada, {
                     onDelete: "CASCADE",
                     foreignKey: {
                         allowNull: false
@@ -20,5 +18,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    return Proyecto;
+    return GrabacionLlamada;
 };
