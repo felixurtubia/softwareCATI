@@ -38,11 +38,13 @@ module.exports = function(app, passport) {
     app.get('/proyecto/:id', isLoggedIn, function (req,res) {
         if (req.user.privileges)
             res.render("proyectoAdmin.html", {
-                user:req.user
+                user:req.user,
+                id: req.params.id
             });
         else
             res.render("proyectoUser.html",{
-                user :req.user
+                user :req.user,
+                id: req.params.id
             });
     });
 

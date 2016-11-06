@@ -19,6 +19,29 @@ var busboy = require('connect-busboy');
 //Return router
 module.exports = router;
 
+//Obtener contactos para llamar
+
+router.get('/contactos', isLoggedIn, function(req, res, next) {
+    try {
+        /*var query = url.parse(req.url,true).query;
+         console.log(query);*/
+        models.Contacto.findAll({
+            where: {
+                state: "si"
+            }
+        }).then(function (user) {
+            //for(var x=0;x<user.length;x++){
+            //console.log(user[x].username);
+            //res.render('VerUsuario.html', {title: 'Listar Usuarios', resultado: user});
+            res.json(user);
+            //}
+        });
+        //res.render('VerUsuario.html', {title: 'Listar Usuarios'});
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return next(ex);
+    }
+});
 //Crear proyecto
 router.post('/proyectos', isLoggedIn, isAdmin,function (req,res,next) {
     try{

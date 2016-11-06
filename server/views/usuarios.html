@@ -26,39 +26,39 @@
 </head>
 <body ng-controller="controladorUsuarios">
 
-<!--Header-part-->
-<div id="header">
-    <h1><a href="/dashboard">Matrix Admin</a></h1>
-</div>
-<!--close-Header-part-->
+    <!--Header-part-->
+    <div id="header">
+        <h1><a href="/dashboard">Matrix Admin</a></h1>
+    </div>
+    <!--close-Header-part-->
 
-<!--top-Header-menu-->
-<div id="user-nav" class="navbar navbar-inverse">
-    <ul class="nav">
-        <li class=""><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Hola <%=user.username%></span></a></li>
-        <li class=""><a title="" href="/logout"><i class="icon icon-share-alt"></i> <span class="text">Cerrar Sesion</span></a></li>
-    </ul>
-</div>
-<!--close-top-header-->
+    <!--top-Header-menu-->
+    <div id="user-nav" class="navbar navbar-inverse">
+        <ul class="nav">
+            <li class=""><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Hola <%=user.username%></span></a></li>
+            <li class=""><a title="" href="/logout"><i class="icon icon-share-alt"></i> <span class="text">Cerrar Sesion</span></a></li>
+        </ul>
+    </div>
+    <!--close-top-header-->
 
-<!--sidebar-menu-->
-<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-list"></i>Forms</a>
-    <ul>
-        <li><a href="/dashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-        <li class="submenu"> <a href="#"><i class="icon icon-pencil"></i> <span>Proyectos</span> </a>
-            <ul>
-                <li><a href="/proyectos">Ver Proyectos</a></li>
-                <li><a href="/CrearProyecto">Crear Proyecto</a></li>
-            </ul>
-        </li>
-        <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Usuarios</span> </a>
-            <ul>
-                <li><a href="/usuarios">Ver Usuarios</a></li>
-                <li><a href="/CrearUsuario">Crear Usuarios</a></li>
-            </ul>
-        </li>
-    </ul>
-</div>
+    <!--sidebar-menu-->
+    <div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-list"></i>Forms</a>
+        <ul>
+            <li><a href="/dashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+            <li class="submenu"> <a href="#"><i class="icon icon-pencil"></i> <span>Proyectos</span> </a>
+                <ul>
+                    <li><a href="/proyectos">Ver Proyectos</a></li>
+                    <li><a href="/CrearProyecto">Crear Proyecto</a></li>
+                </ul>
+            </li>
+            <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Usuarios</span> </a>
+                <ul>
+                    <li><a href="/usuarios">Ver Usuarios</a></li>
+                    <li><a href="/CrearUsuario">Crear Usuarios</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 <!--close-left-menu-stats-sidebar-->
 
 <!--breadcrumbs-->

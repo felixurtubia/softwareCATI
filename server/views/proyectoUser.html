@@ -1,34 +1,35 @@
-!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html ng-app="myApp">
 <head>
-    <title>Pagina Personal</title><meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <title>Proyecto</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <!-- Matrix admin -->
+    <!--Script Matrix -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="/css/colorpicker.css" />
-    <link rel="stylesheet" href="/css/datepicker.css" />
     <link rel="stylesheet" href="/css/uniform.css" />
     <link rel="stylesheet" href="/css/select2.css" />
     <link rel="stylesheet" href="/css/matrix-style.css" />
     <link rel="stylesheet" href="/css/matrix-media.css" />
-    <link rel="stylesheet" href="/css/bootstrap-wysihtml5.css" />
     <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
-    <!-- Bootstrap -->
+    <!--Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://swx.cdn.skype.com/shared/v/1.2.15/SkypeBootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
+    <script src="/js/myCtrl.js"></script>
+    <script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
 </head>
+<body ng-controller="controladorContactos">
 
-<body>
 <!--Header-part-->
 <div id="header">
     <h1><a href="/dashboard">Matrix Admin</a></h1>
@@ -50,7 +51,7 @@
         <li><a href="/dashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
         <li class="submenu"> <a href="#"><i class="icon icon-pencil"></i> <span>Proyectos</span> </a>
             <ul>
-                <li><a href="/proyectos">Ver Proyectos</a></li>>
+                <li><a href="/proyectos">Ver Proyectos</a></li>
             </ul>
         </li>
     </ul>
@@ -60,8 +61,11 @@
 <!--breadcrumbs-->
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="#" class="tip-bottom">Proyectos</a> <a href="#" class="current">NOMBRE PROYECTO</a> </div>
-        <h1>Proyectos</h1>
+        <div id="breadcrumb">
+            <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a>
+            <a href="#" class="tip-bottom">Proyectos</a>
+            <a href="#" class="current">LLamar Contacto</a>
+        </div>
     </div>
     <!--End-breadcrumbs-->
     <div class="container-fluid">
@@ -69,35 +73,45 @@
             <div class="span6">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                        <h5>NOMBRE DE PROYECTO</h5>
+                        <h5>Informacion de Contacto</h5>
                     </div>
+                    <script>
+                        var numero = $('[ng-controller="controladorContactos"]').scope().user.number;
+
+                    </script>
                     <div class="widget-content nopadding">
                         <p>
-                            DATOS DE PROYECTO
-                            <a href="/proyectos" class="btn btn-info">Implementar el llamar a contacto</a>
+                            <strong> Nombre</strong> :  {{user.name}}<br>
+                            <strong> Apellido</strong> :  {{user.lastname}}<br>
+                            <strong> Numero</strong> :  {{user.number}}<br>
+                            <script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+                            <div id="SkypeButton_Call_echo123">
+                                <script type="text/javascript">
+                                    Skype.ui({
+                                        "name": "call",
+                                        "element": "SkypeButton_Call_echo123",
+                                        "participants": ["+569" + numero],
+                                        "imageSize": 32
+                                    });
+                                </script>
+                            </div>
                         </p>
                     </div>
                 </div>
+                <button onclick="location.reload(true)" class="btn btn-primary">Siguiente Contacto</button>
             </div>
         </div>
     </div>
 </div>
 
-<!--Scripts de Matrix -->
+<!--Script tablas -->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.ui.custom.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/bootstrap-colorpicker.js"></script>
-<script src="/js/bootstrap-datepicker.js"></script>
-
-<script src="/js/masked.js"></script>
 <script src="/js/jquery.uniform.js"></script>
 <script src="/js/select2.min.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/matrix.js"></script>
-<script src="/js/matrix.form_common.js"></script>
-<script src="/js/wysihtml5-0.3.0.js"></script>
-<script src="/js/jquery.peity.min.js"></script>
-<script src="/js/bootstrap-wysihtml5.js"></script>
+<script src="/js/matrix.tables.js"></script>
 </body>
-
 </html>

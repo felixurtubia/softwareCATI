@@ -78,19 +78,15 @@ app.controller("controladorProyectos", function ($scope,$http) {
                 console.log('Error:' + data);
             });
     };
-/*
-    $scope.modificarProyecto = function () {
-        console.log($scope.idProyecto);
-        $http.post('/api/modificarProyecto/' + $scope.idProyecto, $scope.informacion)
-            .success(function (data) {
-                $scope.formData = {};
-                $scope.idProyecto = -1;
-                console.log(data);
+});
+app.controller("controladorContactos", function($scope, $http){
+
+        $http.get('/api/contactos')
+            .success(function(data) {
+                $scope.user = data[Math.floor(Math.random() * data.length)];
+                console.log(data)
             })
             .error(function(data) {
-                console.log('Error:' + data);
+                console.log('Error: ' + data);
             });
-    }
-*/
-
 });
