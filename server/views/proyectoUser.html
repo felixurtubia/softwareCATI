@@ -77,7 +77,6 @@
                     </div>
                     <script>
                         var numero = $('[ng-controller="controladorContactos"]').scope().user.number;
-
                     </script>
                     <div class="widget-content nopadding">
                         <p>
@@ -94,7 +93,18 @@
                                         "imageSize": 32
                                     });
                                 </script>
-                            </div>
+                            </div><br>
+                        <form name="myForm">
+                            <label>
+                                <input type="radio" ng-model="state.value" value="si">
+                                LLamar luego
+                            </label><br/>
+                            <label>
+                                <input type="radio" ng-model="state.value" value="no">
+                                No llamar
+                            </label><br/>
+                            <button ng-click="modificarEstado()"> Cambiar estado</button>
+                        </form>
                         </p>
                     </div>
                 </div>

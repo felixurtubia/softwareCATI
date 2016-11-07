@@ -23,22 +23,35 @@ module.exports = router;
 
 router.get('/contactos', isLoggedIn, function(req, res, next) {
     try {
-        /*var query = url.parse(req.url,true).query;
-         console.log(query);*/
         models.Contacto.findAll({
             where: {
                 state: "si"
             }
         }).then(function (user) {
-            //for(var x=0;x<user.length;x++){
-            //console.log(user[x].username);
-            //res.render('VerUsuario.html', {title: 'Listar Usuarios', resultado: user});
             res.json(user);
-            //}
         });
-        //res.render('VerUsuario.html', {title: 'Listar Usuarios'});
     } catch (ex) {
         console.error("Internal error:" + ex);
+        return next(ex);
+    }
+});
+
+//Modificar estado contacto
+
+router.get('/contactos/:id/:state', isLoggedIn, function (req,res,next) {
+    try{
+        models.Contacto.findOne({
+            where: {
+                id:req.params.id
+            }
+        }).then(function(contacto) {
+            contacto.updateAttributes({
+                state: req.params.state
+            });
+        });
+    }
+    catch(ex){
+        console.error("Internal error:"+ex);
         return next(ex);
     }
 });
