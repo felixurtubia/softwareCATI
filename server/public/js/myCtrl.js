@@ -80,13 +80,25 @@ app.controller("controladorProyectos", function ($scope,$http) {
     };
 });
 app.controller("controladorContactos", function($scope, $http){
-
-        $http.get('/api/contactos')
+    $scope.state = {
+        value: 'yes'
+    };
+    $http.get('/api/contactos')
+        .success(function(data) {
+            $scope.user = data[Math.floor(Math.random() * data.length)];
+            console.log(data)
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    $scope.modificarEstado = function () {
+        $http.get('/api/contactos/' + $scope.user.id + '/' + $scope.state.value)
             .success(function(data) {
-                $scope.user = data[Math.floor(Math.random() * data.length)];
-                console.log(data)
+                $scope.formData = {};
+                console.log(data);
             })
             .error(function(data) {
-                console.log('Error: ' + data);
+                console.log('Error:' + data);
             });
+    };
 });
