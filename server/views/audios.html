@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Audios</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!--Script Matrix -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/uniform.css" />
+    <link rel="stylesheet" href="css/select2.css" />
+    <link rel="stylesheet" href="css/matrix-style.css" />
+    <link rel="stylesheet" href="css/matrix-media.css" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+    <!--Script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
+    <script src="/js/myCtrl.js"></script>
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="/dashboard">Matrix Admin</a></h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class=""><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Hola <%=user.username%></span></a></li>
+        <li class=""><a title="" href="/logout"><i class="icon icon-share-alt"></i> <span class="text">Cerrar Sesion</span></a></li>
+    </ul>
+</div>
+<!--close-top-header-->
+
+<!--sidebar-menu-->
+<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-list"></i>Forms</a>
+    <ul>
+        <li><a href="/dashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-pencil"></i> <span>Proyectos</span> </a>
+            <ul>
+                <li><a href="/proyectos">Ver Proyectos</a></li>
+                <li><a href="/CrearProyecto">Crear Proyecto</a></li>
+            </ul>
+        </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Usuarios</span> </a>
+            <ul>
+                <li><a href="/usuarios">Ver Usuarios</a></li>
+                <li><a href="/CrearUsuario">Crear Usuarios</a></li>
+            </ul>
+        </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-signal"></i> <span>Audios</span> </a>
+            <ul>
+                <li><a href="/audios">Ver audios</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!--close-left-menu-stats-sidebar-->
+
+<!--breadcrumbs-->
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="#" class="tip-bottom">Audios</a> <a href="#" class="current">Ver Audios</a> </div>
+        <h1>Ver Audios</h1>
+    </div>
+    <!--End-breadcrumbs-->
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+                        <h5>Audios</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th> ID </th>
+                                <th> Nombre </th>
+                                <th> Duracion </th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="center">1</td>
+                                <td class="center">penta</td>
+                                <td class="center">3:53</td>
+                                <td class="center"><a href="/audios/penta.mp3" class="btn btn-primary">Descargar</a></td>
+                            </tr>
+                            </tbody>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Script tablas -->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.ui.custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.uniform.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/matrix.js"></script>
+<script src="js/matrix.tables.js"></script>
+</body>
+</html>

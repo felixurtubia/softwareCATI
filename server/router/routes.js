@@ -64,7 +64,6 @@ module.exports = function(app, passport) {
     app.get('/CrearProyecto', isLoggedIn, isAdmin, function (req, res) {
         res.render('CrearProyecto.html', {
             title: 'Crear Proyecto',
-            confirmation: req.flash('info'),
             user : req.user
         });
     });
@@ -94,16 +93,29 @@ module.exports = function(app, passport) {
         res.redirect('../api/modificarUsuario/'+req.params.id);
     });
 
+//VISTA SUBIR ARCHIVO
     app.get('/upload',isAdmin, isLoggedIn, function (req,res) {
         res.render('SubirArchivo.html', {
             user: req.user
         });
     });
+
+//VISTA VER CONTACTO
     app.get('/contacto', isLoggedIn, isAdmin,function (req,res) {
         res.render('contacto.html',{
             user : req.user
         });
     });
+
+//VISTA VER AUDIOS
+    app.get('/audios', isLoggedIn, isAdmin,function (req,res) {
+        res.render('audios.html',{
+            user : req.user
+        });
+    });
+
+
+
 };
 
 

@@ -64,9 +64,7 @@ router.post('/proyectos', isLoggedIn, isAdmin,function (req,res,next) {
             creador: req.user.email,
         });
         res.render('proyectosAdmin.html', {
-            user :req.user,
-            confirmation: req.flash('info','MENSAJE ES UN TOODO AAAAA'),
-            failureFlash : true
+            user :req.user
         })
     }
     catch(ex){
@@ -238,7 +236,7 @@ router.delete('/usuarios/:id', isLoggedIn, isAdmin, function(req,res,next){
 
 //SUBIR Y LEER ARCHIVO CSV (USO DE BUSBOY)
 router.use(busboy());
-router.post('/upload',function (req,res,next) {
+router.post('/upload',isLoggedIn, isAdmin, function (req,res,next) {
     try{
         var fstream;
         req.pipe(req.busboy);
@@ -279,13 +277,26 @@ router.post('/upload',function (req,res,next) {
 
             });
         });
-        req.flash('info', 'You need to be authenticated to access this page');
-        console.log(req.flash('info'))
         res.redirect('/upload');
     }
     catch(ex){
         console.error('No se pudo leer archivo:' +ex);
         return next(ex)
+    }
+});
+
+
+//DESCARGAR AUDIO router.get('/audio/:file(*)
+router.get('/audios/file(*)', isLoggedIn,isAdmin, function(req, res, next) {
+    try {
+        /*var file = req.params.file*/
+        var file = req.params.file
+            , path = __dirname + '/audios/' + file;
+        res.download(path);
+        res.redirect('/audios');
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return next(ex);
     }
 });
 
