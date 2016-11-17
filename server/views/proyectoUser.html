@@ -70,7 +70,7 @@
     <!--End-breadcrumbs-->
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span6">
+            <div class="span4">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                         <h5>Informacion de Contacto</h5>
@@ -94,6 +94,30 @@
                                     });
                                 </script>
                             </div><br>
+                        <!--<form name="myForm">
+                            <label>
+                                <input type="radio" ng-model="state.value" value="si">
+                                LLamar luego
+                            </label><br/>
+                            <label>
+                                <input type="radio" ng-model="state.value" value="no">
+                                No llamar
+                            </label><br/>
+                            <button ng-click="modificarEstado()"> Cambiar estado</button>
+                        </form>-->
+                        <button onclick="location.reload(true)" class="btn btn-primary">Siguiente Contacto</button>
+                        </p>
+                    </div>
+                </div>
+               <!-- <button onclick="location.reload(true)" class="btn btn-primary">Siguiente Contacto</button>-->
+            </div>
+            <div class="span4">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"><i class="icon-align-justify"></i> </span>
+                        <h5>Cambiar estado</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <p>
                         <form name="myForm">
                             <label>
                                 <input type="radio" ng-model="state.value" value="si">
@@ -108,7 +132,18 @@
                         </p>
                     </div>
                 </div>
-                <button onclick="location.reload(true)" class="btn btn-primary">Siguiente Contacto</button>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span4">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>SurveyMonkey</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <a href="https://es.surveymonkey.com/r/VWTG8V7" target="_blank" class="btn btn-success">Abrir Encuesta</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

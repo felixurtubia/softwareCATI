@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-    <title>Modificar Proyecto</title><meta charset="UTF-8" />
+    <title>Agregar Encuesta</title><meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -29,7 +29,7 @@
 </head>
 
 
-<body ng-controller="controladorProyectos">
+<body>
 <!--Header-part-->
 <div id="header">
     <h1><a href="/dashboard">Matrix Admin</a></h1>
@@ -74,8 +74,8 @@
 
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="/proyectos" class="tip-bottom">Proyectos</a> <a href="#" class="current">Modificar Proyecto</a> </div>
-        <h1>Rellene los campos a modificar</h1>
+        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="/proyectos" class="tip-bottom">Proyectos</a> <a href="#" class="current">Cargar Encuesta</a> </div>
+        <h1>Poner el link de la encuesta</h1>
     </div>
 
     <div class="container-fluid">
@@ -84,17 +84,17 @@
             <div class="span6">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                        <h5>Informacion de Proyecto</h5>
+                        <h5>Encuesta</h5>
                     </div>
 
                     <div class="widget-content nopadding">
 
-                        <form class="form-horizontal" action="/api/modificarProyecto/<%=id%>" method="post">
+                        <form class="form-horizontal" action="#" method="post">
                             <div class="form-group">
                                 <div class="control-group">
-                                    <label class="control-label">Nombre de Proyecto :</label>
+                                    <label class="control-label">Url de la encuesta :</label>
                                     <div class="controls">
-                                        <input type="text" class="span11" name="nombre" />
+                                        <input type="url" class="span11" name="nombre" />
                                     </div>
                                 </div>
                                 <div class="form-actions">

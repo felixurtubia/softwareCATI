@@ -114,6 +114,11 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/encuesta', isLoggedIn, isAdmin,function (req,res) {
+        res.render('cargarEncuesta.html',{
+            user : req.user
+        });
+    });
 
 
 };
