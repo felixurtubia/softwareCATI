@@ -94,22 +94,10 @@
                                     });
                                 </script>
                             </div><br>
-                        <!--<form name="myForm">
-                            <label>
-                                <input type="radio" ng-model="state.value" value="si">
-                                LLamar luego
-                            </label><br/>
-                            <label>
-                                <input type="radio" ng-model="state.value" value="no">
-                                No llamar
-                            </label><br/>
-                            <button ng-click="modificarEstado()"> Cambiar estado</button>
-                        </form>-->
                         <button onclick="location.reload(true)" class="btn btn-primary">Siguiente Contacto</button>
                         </p>
                     </div>
                 </div>
-               <!-- <button onclick="location.reload(true)" class="btn btn-primary">Siguiente Contacto</button>-->
             </div>
             <div class="span4">
                 <div class="widget-box">
@@ -117,24 +105,25 @@
                         <h5>Cambiar estado</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <p>
                         <form name="myForm">
                             <label>
-                                <input type="radio" ng-model="state.value" value="si">
-                                LLamar luego
-                            </label><br/>
+                                <input type="radio" name="llamar" ng-model="state.value" value="si">
+                                LLamar luego<br/>
+                            </label>
                             <label>
-                                <input type="radio" ng-model="state.value" value="no">
+                                <input type="radio" name="llamar" ng-model="state.value" value="no">
                                 No llamar
                             </label><br/>
                             <button ng-click="modificarEstado()"> Cambiar estado</button>
                         </form>
-                        </p>
                     </div>
+                </div>
+                <div class="span4">
+                    <iframe src="https://es.surveymonkey.com/r/VWTG8V7" style="border:none" height="500" width="600"></iframe>
                 </div>
             </div>
         </div>
-        <div class="row-fluid">
+        <!--<div class="row-fluid">
             <div class="span4">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -145,7 +134,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 
