@@ -6,7 +6,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Encuesta = sequelize.define("Encuesta", {
         nombre_Encuesta: DataTypes.STRING,
-        link_Encuesta: DataTypes.INTEGER,
+        link_Encuesta: DataTypes.STRING,
         proyectoid: DataTypes.INTEGER
 
     },{

@@ -122,6 +122,20 @@ router.get('/proyectos', isLoggedIn, function(req, res, next) {
     }
 });
 
+//crear ENCUESTA
+router.post('/cargarencuesta/:id', isLoggedIn, isAdmin, function (req,res,next) {
+    try{
+        models.Encuesta.create({
+            nombre_Encuesta: req.body.name,
+            link_Encuesta: req.body.link,
+            proyectoid: req.params.id
+        });
+    }
+    catch(ex){
+        console.error("Internal error: "+ex);
+        return next(ex);
+    }
+});
 //Obetener usuarios
 router.get('/usuarios', isLoggedIn, function(req, res, next) {
 	try {
@@ -287,13 +301,12 @@ router.post('/upload',isLoggedIn, isAdmin, function (req,res,next) {
 
 
 //DESCARGAR AUDIO router.get('/audio/:file(*)
-router.get('/audios/file(*)', isLoggedIn,isAdmin, function(req, res, next) {
+router.get('/audios/:file', isLoggedIn,isAdmin, function(req, res, next) {
     try {
         /*var file = req.params.file*/
-        var file = req.params.file
-            , path = __dirname + '/audios/' + file;
+        var file = req.params.file;
+        var path = __dirname + '/audios/' + file;
         res.download(path);
-        res.redirect('/audios');
     } catch (ex) {
         console.error("Internal error:" + ex);
         return next(ex);

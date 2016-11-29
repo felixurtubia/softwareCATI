@@ -89,16 +89,22 @@
 
                     <div class="widget-content nopadding">
 
-                        <form class="form-horizontal" action="#" method="post">
+                        <form class="form-horizontal" action="/api/cargarencuesta/<%=id%>" method="post">
                             <div class="form-group">
+                                <div class="control-group">
+                                    <label class="control-label">Nombre de la encuesta :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" name="name" />
+                                    </div>
+                                </div>
                                 <div class="control-group">
                                     <label class="control-label">Url de la encuesta :</label>
                                     <div class="controls">
-                                        <input type="url" class="span11" name="nombre" />
+                                        <input type="url" class="span11" name="link" />
                                     </div>
                                 </div>
                                 <div class="form-actions">
-                                    <input type="submit" class="btn btn-info"> </input>
+                                    <input type="submit" class="btn btn-info"> Cargar Encuesta</input>
                                 </div>
                             </div>
                         </form>

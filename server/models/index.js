@@ -10,7 +10,7 @@ var opts = {
         freezeTableName: true
     }
 }
-var sequelize = new Sequelize('sys', 'root', '4566',opts);
+var sequelize = new Sequelize('sys', 'root', 'cde56fgh76',opts);
 var db        = {};
 
 fs
