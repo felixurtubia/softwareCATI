@@ -37,15 +37,9 @@ module.exports = function(app, passport) {
 //PROYECTO
     app.get('/proyecto/:id', isLoggedIn, function (req,res) {
         if (req.user.privileges)
-            res.render("proyectoAdmin.html", {
-                user:req.user,
-                id: req.params.id
-            });
+            res.redirect('../api/proyecto/'+req.params.id);
         else
-            res.render("proyectoUser.html",{
-                user :req.user,
-                id: req.params.id
-            });
+            res.redirect('../api/proyectoUser/'+req.params.id);
     });
 
 //PESTAÑA PROYECTOS

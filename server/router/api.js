@@ -37,6 +37,48 @@ router.get('/contactos', isLoggedIn, function(req, res, next) {
 });
 
 //Modificar estado contacto
+router.get('/proyectoUser/:id', isLoggedIn, function (req, res, next) {
+    try{
+        models.Encuesta.findOne({
+            where: {
+                proyectoid: req.params.id
+            }
+        }).then(function (encuesta) {
+            if (encuesta != null){
+                res.render('proyectoUser.html',{nombre_Encuesta: encuesta.nombre_Encuesta,link_Encuesta: encuesta.link_Encuesta,user : req.user,id: req.params.id});
+
+            }
+            else {
+                res.render('proyectoUser.html',{nombre_Encuesta: 'No hay encuesta disponible',link_Encuesta: 'contactarse con el Administrador',user : req.user,id: req.params.id});
+
+            }
+        })
+    } catch(ex) {
+        console.error("Internal Error:" + ex);
+        return next(ex);
+    }
+});
+router.get('/proyecto/:id', isLoggedIn, isAdmin, function (req, res, next) {
+    try{
+        models.Encuesta.findOne({
+            where: {
+                proyectoid: req.params.id
+            }
+        }).then(function (encuesta) {
+            if (encuesta != null){
+                res.render('proyectoAdmin.html',{nombre_Encuesta: encuesta.nombre_Encuesta,user : req.user,id: req.params.id});
+
+            }
+            else {
+                res.render('proyectoAdmin.html',{nombre_Encuesta: 'No hay encuesta disponible',user : req.user,id: req.params.id});
+
+            }
+        })
+    } catch(ex) {
+        console.error("Internal Error:" + ex);
+        return next(ex);
+    }
+});
 
 router.get('/contactos/:id/:state', isLoggedIn, function (req,res,next) {
     try{
@@ -130,7 +172,7 @@ router.post('/cargarencuesta/:id', isLoggedIn, isAdmin, function (req,res,next) 
             link_Encuesta: req.body.link,
             proyectoid: req.params.id
         });
-		//res.redirect('/cargarencuesta/:req.params.id');
+		res.redirect('/proyecto/'+req.params.id);
     }
     catch(ex){
         console.error("Internal error: "+ex);

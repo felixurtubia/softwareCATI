@@ -28,7 +28,7 @@
 
 </head>
 
-<body>
+<body ng-controller="datosProyecto">
 <!--Header-part-->
 <div id="header">
     <h1><a href="/dashboard">Matrix Admin</a></h1>
@@ -94,6 +94,11 @@
                 <div class="widget-box">
                     <div class="widget-title"><span class="icon"><i class="icon-align-justify"></i> </span>
                         <h5>Encuesta</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <p>
+                            Encuesta Actual: <%=nombre_Encuesta%>
+                        </p>
                     </div>
                     <div class="widget-content nopadding">
                         <p>
