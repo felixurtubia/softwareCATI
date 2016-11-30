@@ -94,9 +94,10 @@ module.exports = function(app, passport) {
     });
 
 //VISTA SUBIR ARCHIVO
-    app.get('/upload',isAdmin, isLoggedIn, function (req,res) {
+    app.get('/upload/:id',isAdmin, isLoggedIn, function (req,res) {
         res.render('SubirArchivo.html', {
-            user: req.user
+            user: req.user,
+			id: req.params.id
         });
     });
 

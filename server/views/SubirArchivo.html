@@ -7,16 +7,16 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Matrix admin -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="css/colorpicker.css" />
-    <link rel="stylesheet" href="css/datepicker.css" />
-    <link rel="stylesheet" href="css/uniform.css" />
-    <link rel="stylesheet" href="css/select2.css" />
-    <link rel="stylesheet" href="css/matrix-style.css" />
-    <link rel="stylesheet" href="css/matrix-media.css" />
-    <link rel="stylesheet" href="css/bootstrap-wysihtml5.css" />
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="/css/colorpicker.css" />
+    <link rel="stylesheet" href="/css/datepicker.css" />
+    <link rel="stylesheet" href="/css/uniform.css" />
+    <link rel="stylesheet" href="/css/select2.css" />
+    <link rel="stylesheet" href="/css/matrix-style.css" />
+    <link rel="stylesheet" href="/css/matrix-media.css" />
+    <link rel="stylesheet" href="/css/bootstrap-wysihtml5.css" />
+    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap -->
@@ -73,7 +73,7 @@
 
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="#" class="tip-bottom">Proyectos</a> <a href="#" class="current">Base de datos</a> </div>
+        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="/proyectos" class="tip-bottom">Proyectos</a> <a href="#" class="current">Base de datos</a> </div>
         <h1>Base de datos</h1>
     </div>
 
@@ -88,7 +88,7 @@
 
                     <div class="widget-content nopadding">
 
-                        <form method='post' action='/api/upload' enctype="multipart/form-data" class="form-horizontal">
+                        <form method='post' action='/api/upload/<%=id%>' enctype="multipart/form-data" class="form-horizontal">
                             <div class="form-group">
                                 <div class="control-group">
                                     <label class="control-label">Archivo a subir :</label>
@@ -110,20 +110,18 @@
 </div>
 
 <!--Scripts de Matrix -->
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.ui.custom.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-colorpicker.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.ui.custom.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.uniform.js"></script>
+<script src="/js/select2.min.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/matrix.js"></script>
+<script src="/js/matrix.tables.js"></script>
 
-<script src="js/masked.js"></script>
-<script src="js/jquery.uniform.js"></script>
-<script src="js/select2.min.js"></script>
-<script src="js/matrix.js"></script>
-<script src="js/matrix.form_common.js"></script>
-<script src="js/wysihtml5-0.3.0.js"></script>
-<script src="js/jquery.peity.min.js"></script>
-<script src="js/bootstrap-wysihtml5.js"></script>
+<script src="/js/wysihtml5-0.3.0.js"></script>
+<script src="/js/jquery.peity.min.js"></script>
+<script src="/js/bootstrap-wysihtml5.js"></script>
 <script>
     $('.textarea_editor').wysihtml5();
 </script>

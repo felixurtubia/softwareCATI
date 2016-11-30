@@ -130,6 +130,7 @@ router.post('/cargarencuesta/:id', isLoggedIn, isAdmin, function (req,res,next) 
             link_Encuesta: req.body.link,
             proyectoid: req.params.id
         });
+		//res.redirect('/cargarencuesta/:req.params.id');
     }
     catch(ex){
         console.error("Internal error: "+ex);
@@ -250,7 +251,7 @@ router.delete('/usuarios/:id', isLoggedIn, isAdmin, function(req,res,next){
 
 //SUBIR Y LEER ARCHIVO CSV (USO DE BUSBOY)
 router.use(busboy());
-router.post('/upload',isLoggedIn, isAdmin, function (req,res,next) {
+router.post('/upload/:id',isLoggedIn, isAdmin, function (req,res,next) {
     try{
         var fstream;
         req.pipe(req.busboy);
@@ -279,7 +280,8 @@ router.post('/upload',isLoggedIn, isAdmin, function (req,res,next) {
                             lastname: csvrow[1],
                             number: csvrow[2],
                             state: csvrow[3],
-                            basededatos: filename
+                            basededatos: filename,
+							proyectid: req.params.id
                         });
 
                         csvData.push(csvrow);
@@ -291,7 +293,7 @@ router.post('/upload',isLoggedIn, isAdmin, function (req,res,next) {
 
             });
         });
-        res.redirect('/upload');
+        res.redirect('/upload/:req.params.id');
     }
     catch(ex){
         console.error('No se pudo leer archivo:' +ex);

@@ -72,7 +72,7 @@
 <!--breadcrumbs-->
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="#" class="tip-bottom">Proyectos</a> <a href="#" class="current">Detalles</a> </div>
+        <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="/proyectos" class="tip-bottom">Proyectos</a> <a href="#" class="current">Detalles</a> </div>
         <h1>Proyectos</h1>
     </div>
     <!--End-breadcrumbs-->
@@ -84,9 +84,8 @@
                         <h5>Base de Datos</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <p>Base de datos actual: </p>
                         <p>
-                            <a href="/upload" class="btn btn-info">Cargar base de datos</a>
+                            <a href="/upload/<%=id%>" class="btn btn-info">Cargar base de datos</a>
                         </p>
                     </div>
                 </div>
@@ -97,7 +96,6 @@
                         <h5>Encuesta</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <p>Encuesta actual: </p>
                         <p>
                             <a href="/encuesta/<%=id%>" class="btn btn-info">Cargar encuesta</a>
                         </p>
@@ -112,17 +110,11 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.ui.custom.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/bootstrap-colorpicker.js"></script>
-<script src="/js/bootstrap-datepicker.js"></script>
-
-<script src="/js/masked.js"></script>
 <script src="/js/jquery.uniform.js"></script>
 <script src="/js/select2.min.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/matrix.js"></script>
-<script src="/js/matrix.form_common.js"></script>
-<script src="/js/wysihtml5-0.3.0.js"></script>
-<script src="/js/jquery.peity.min.js"></script>
-<script src="/js/bootstrap-wysihtml5.js"></script>
+<script src="/js/matrix.tables.js"></script>
 </body>
 
 </html>

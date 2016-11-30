@@ -11,7 +11,8 @@ module.exports = function(sequelize, DataTypes) {
         lastname: DataTypes.STRING,
         number: DataTypes.STRING,
         state: DataTypes.STRING,
-        basededatos: DataTypes.STRING
+        basededatos: DataTypes.STRING,
+		proyectid: DataTypes.INTEGER
     }, {
         classMethods: {
             baseDatos_contactoAssociate: function(models) {

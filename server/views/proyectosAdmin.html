@@ -18,15 +18,13 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
     <!--Script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"  ></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"  ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"  ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"  ></script>
     <script src="/js/myCtrl.js"></script>
 
-
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	
 </head>
 <body ng-controller="controladorProyectos">
 
@@ -81,12 +79,12 @@
         <hr>
         <div class="row-fluid">
             <div class="span12">
-                <div class="widget-box">
+                <div class="widget-box" >
                     <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
                         <h5>Proyectos Existentes</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped" >
                             <thead>
                             <tr>
                                 <th> ID </th>
@@ -97,7 +95,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="proyecto in proyectos">
+                            <tr ng-repeat="proyecto in proyectos" ng-cloak>
                                 <td>{{proyecto.id}}</td>
                                 <td>{{proyecto.nombre}}</td>
                                 <td><a href="/proyecto/{{proyecto.id}}" class="btn btn-primary">Entrar</a></td>
@@ -115,14 +113,21 @@
 </div>
 
 <!--Script tablas -->
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.ui.custom.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.uniform.js"></script>
-<script src="js/select2.min.js"></script>
-<script src="js/jquery.dataTables.min.js"></script>
-<script src="js/matrix.js"></script>
-<script src="js/matrix.tables.js"></script>
+<script src="js/jquery.min.js" ></script>
+<script src="js/jquery.ui.custom.js" ></script>
+<script src="js/bootstrap.min.js" ></script>
+<script src="js/jquery.uniform.js" ></script>
+<script src="js/select2.min.js" ></script>
+<script src="js/jquery.dataTables.min.js" ></script>
+<script src="js/matrix.js" ></script>
+<script src="js/matrix.tables.js" ></script>
+
+
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+
 </body>
 </html>
 

@@ -70,7 +70,7 @@
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb"> <a href="/dashboard" title="Volver al inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a> <a href="#" class="tip-bottom">Usuarios</a> <a href="#" class="current">Ver Usuarios</a> </div>
-        <h1>{{title}}</h1>
+        <h1>Usuarios</h1>
     </div>
     <!--End-breadcrumbs-->
     <div class="container-fluid">
@@ -95,7 +95,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="usuario in users">
+                            <tr ng-repeat="usuario in users" ng-cloak>
                                 <td class="center">{{usuario.id}}</td>
                                 <td class="center">{{usuario.username}}</td>
                                 <td class="center">{{usuario.password}}</td>
